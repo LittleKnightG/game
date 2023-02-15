@@ -267,77 +267,126 @@ business_studies_answers = [
   "A financial statement that shows a company's assets, liabilities, and equity at a specific point in time",
   "A financial statement that shows a company's inflows and outflows of cash over a specific period of time"
 ]
-import random
-
-# Function to get subject and number of questions
-def get_subject_and_num_questions():
-    subject = input("Which subject would you like to revise for today? Choose from: geography, biology, chemistry, physics, computer science, economics, English literature, religious studies, maths, or business studies: ")
-    num_questions = int(input(f"How many questions would you like to go over for {subject}? "))
-    return subject, num_questions
-
-# Function to get random questions for a subject
-def get_random_questions(subject, num_questions):
-    questions, answers = [], []
-    if subject == "geography":
-        questions, answers = geography, geography_answers
-    elif subject == "biology":
-        questions, answers = biology, biology_answers
-    elif subject == "chemistry":
-        questions, answers = chemistry, chemistry_answers
-    elif subject == "physics":
-        questions, answers = physics, physics_answers
-    elif subject == "computer science":
-        questions, answers = computer_science, computer_science_answers
-    elif subject == "economics":
-        questions, answers = economics, economics_answers
-    elif subject == "English literature":
-        questions, answers = english_literature, english_literature_answers
-    elif subject == "religious studies":
-        questions, answers = religious_studies, religious_studies_answers
-    elif subject == "maths":
-        questions, answers = maths, maths_answers
-    elif subject == "business studies":
-        questions, answers = business_studies, business_studies_answers
-    else:
-        print("Sorry, that subject is not available.")
-        return [], []
-
-    random_questions = random.sample(questions, num_questions)
-    return random_questions, answers
-
-# Function to ask questions and calculate score
-def ask_questions(questions, answers):
-    score = 0
-    for i in range(len(questions)):
-        question = questions[i]
-        answer = answers[questions.index(question)]
-        user_answer = input(f"{question}: ")
-        if user_answer.lower() == answer.lower():
-            print("Correct!")
-            score += 1
-        else:
-            print(f"Incorrect. The correct answer is {answer}.")
-    return score
-
-# Main code
+# Step 22: Say hi to the user
 print("Hi! Welcome to the revision quiz.")
 
+# Step 23: Ask for their name
 name = input("What's your name? ")
-print(f"Hello, {name}!")
 
-more_questions = "yes"
+
+# Step 24: Ask the user what subject they want to revise for
+print("Which subject would you like to revise for today?")
+subject = input("Choose from: geography, biology, chemistry, physics, computer science, economics, English literature, religious studies, maths, or business studies: ")
+
+# Step 25: Ask the user how many questions they want to go over for the chosen subject
+number_of_questions = int(input("How many questions would you like to go over for " + subject + "? "))
+print("You have chosen " + str(number_of_questions) + " questions for " + subject + ".")
+print("Here are your questions:")
+
+# Step 26: Give the user the number of questions they have asked for in a random order
+import random
+score = 0
+if subject == "geography":
+    questions = geography
+    answers = geography_answers
+elif subject == "biology":
+    questions = biology
+    answers = biology_answers
+elif subject == "chemistry":
+    questions = chemistry
+    answers = chemistry_answers
+elif subject == "physics":
+    questions = physics
+    answers = physics_answers
+elif subject == "computer science":
+    questions = computer_science
+    answers = computer_science_answers
+elif subject == "economics":
+    questions = economics
+    answers = economics_answers
+elif subject == "English literature":
+    questions = english_literature
+    answers = english_literature_answers
+elif subject == "religious studies":
+    questions = religious_studies
+    answers = religious_studies_answers
+elif subject == "maths":
+    questions = maths
+    answers = maths_answers
+elif subject == "business studies":
+    questions = business_studies
+    answers = business_studies_answers
+else:
+    print("Sorry, that subject is not available.")
+
+random_questions = random.sample(questions, number_of_questions)
+for i in range(number_of_questions):
+    question = random_questions[i]
+    answer = answers[questions.index(question)]
+    user_answer = input(question + ": ")
+    if user_answer.lower() == answer.lower():
+        print("Correct!")
+        score += 1
+    else:
+        print("Incorrect. The correct answer is " + answer + ".")
+
+# Step 28: At the end of the questions give the user their score
+print("You got " + str(score) + " out of " + str(number_of_questions) + " questions correct.")
+
+# Step 29: Ask the user if they want to do more questions
+more_questions = input("Would you like to do more questions? (yes/no) ")
+
 while more_questions == "yes":
-    subject, num_questions = get_subject_and_num_questions()
-    print(f"You have chosen {num_questions} questions for {subject}. Here are your questions:")
+    # Ask again what subject and how many questions
+    subject = input("Choose from: geography, biology, chemistry, physics, computer science, economics, English literature, religious studies, maths, or business studies: ")
+    number_of_questions = int(input("How many questions would you like to go over for " + subject + "? "))
 
-    random_questions, answers = get_random_questions(subject, num_questions)
-    score = ask_questions(random_questions, answers)
+    # Have them do the questions
+    if subject == "geography":
+        questions = geography
+        answers = geography_answers
+    elif subject == "biology":
+        questions = biology
+        answers = biology_answers
+    elif subject == "chemistry":
+        questions = chemistry
+        answers = chemistry_answers
+    elif subject == "physics":
+        questions = physics
+        answers = physics_answers
+    elif subject == "computer science":
+        questions = computer_science
+        answers = computer_science_answers
+    elif subject == "economics":
+        questions = economics
+        answers = economics_answers
+    elif subject == "English literature":
+        questions = english_literature
+        answers = english_literature_answers
+    elif subject == "religious studies":
+        questions = religious_studies
+        answers = religious_studies_answers
+    elif subject == "maths":
+        questions = maths
+        answers = maths_answers
+    elif subject == "business studies":
+        questions = business_studies
+        answers = business_studies_answers
+print(" not available")
 
-    print(f"You got {score} out of {num_questions} questions correct.")
-    more_questions = input("Would you like to do more questions? (yes/no) ")
+random_questions = random.sample(questions, number_of_questions)
+for i in range(number_of_questions):
+    question = random_questions[i]
+    answer = answers[questions.index(question)]
+    user_answer = input(question + ": ")
+    if user_answer.lower() == answer.lower():
+        print("Correct!")
+        score += 1
+    else:
+        print("Incorrect. The correct answer is " + answer + ".")
 
-print("Thank you for revising with us. Goodbye!")
-
-        
-
+# At the end of the questions give the user their score
+print("You got " + str(score) + " out of " + str(number_of_questions) + " questions correct.")
+# Ask the user if they want to do more questions
+more_questions = input("Would you like to do more questions? (yes/no) ")
 
